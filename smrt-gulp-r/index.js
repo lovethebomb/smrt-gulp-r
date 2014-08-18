@@ -56,7 +56,7 @@ function normalizeFileOptions(file, encoding, options) {
         normalizeFileOptionsPromise = normalizeFileOptionsDeferred.promise;
 
     if (fileOptions.name) {
-        fileOptions.name = path.relative(fileOptions.baseUrl, fileOptions.name);
+        //fileOptions.name = path.relative(fileOptions.baseUrl, fileOptions.name);
         fileOptions.include = include;
     } else {
         fileOptions.name = include;
@@ -106,6 +106,8 @@ function optimizeFile(stream, file, encoding, options, fileOptions) {
         requirejsDeferred.reject(err);
     }
 
+    /**
+     * Prepare your paths before giving them to r.js, fucks up with module names
     try {
         // r.js goes nuts sometimes without changing CWD
         // this prevents some edge case failures
@@ -115,6 +117,7 @@ function optimizeFile(stream, file, encoding, options, fileOptions) {
 
         return requirejsPromise;
     }
+    */
 
     fileOptions.out = function (text, sourceMapText) {
         fileOptionsPromise = fileOptionsPromise.then(function (formattedText) {
